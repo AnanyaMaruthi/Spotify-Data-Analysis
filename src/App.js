@@ -12,8 +12,8 @@ function App() {
       <div>
         {/* <Header /> */}
         <Cover />
-        <DataDescription />
         <Analytics />
+        <DataDescription />
       </div>
     </ThemeProvider>
   );

@@ -105,7 +105,7 @@ const fields_part3 = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundImage: `linear-gradient(to bottom right, #1d3557 , #83c5be)`,
     padding: theme.spacing(5),
   },
   list: {
@@ -118,24 +118,28 @@ const DataDescription = () => {
 
   return (
     <Box className={classes.root}>
-      <Typography variant={"h1"} color={"textPrimary"} align={"center"}>
+      <Typography variant={"h1"} color={"textSecondary"} align={"center"}>
         Data Description
       </Typography>
       <Grid container className={classes.list}>
         <Grid item sm={4}>
-          <List>
+          <List dense>
             {fields_part1.map((field, index) => (
               <ListItem key={index}>
                 <ListItemIcon>
-                  <StopIcon color={"secondary"} fontSize={"small"} />
+                  <StopIcon fontSize={"small"} style={{ color: "white" }} />
                 </ListItemIcon>
                 <ListItemText
                   primary={
-                    <Typography>
+                    <Typography color={"textSecondary"}>
                       <b> {field.name} </b> {"-"} <i> {field.type} </i>{" "}
                     </Typography>
                   }
-                  secondary={<Typography>{field.description}</Typography>}
+                  secondary={
+                    <Typography color={"textSecondary"}>
+                      {field.description}
+                    </Typography>
+                  }
                 />
               </ListItem>
             ))}
@@ -143,19 +147,23 @@ const DataDescription = () => {
         </Grid>
 
         <Grid item sm={4}>
-          <List>
+          <List dense>
             {fields_part2.map((field, index) => (
               <ListItem key={index}>
                 <ListItemIcon>
-                  <StopIcon color={"secondary"} fontSize={"small"} />
+                  <StopIcon fontSize={"small"} style={{ color: "white" }} />
                 </ListItemIcon>
                 <ListItemText
                   primary={
-                    <Typography>
+                    <Typography color={"textSecondary"}>
                       <b> {field.name} </b> {"-"} <i> {field.type} </i>{" "}
                     </Typography>
                   }
-                  secondary={<Typography>{field.description}</Typography>}
+                  secondary={
+                    <Typography color={"textSecondary"}>
+                      {field.description}
+                    </Typography>
+                  }
                 />
               </ListItem>
             ))}
@@ -163,19 +171,23 @@ const DataDescription = () => {
         </Grid>
 
         <Grid item sm={4}>
-          <List>
+          <List dense>
             {fields_part3.map((field, index) => (
               <ListItem key={index}>
                 <ListItemIcon>
-                  <StopIcon color={"secondary"} fontSize={"small"} />
+                  <StopIcon fontSize={"small"} style={{ color: "white" }} />
                 </ListItemIcon>
                 <ListItemText
                   primary={
-                    <Typography>
+                    <Typography color={"textSecondary"}>
                       <b> {field.name} </b> {"-"} <i> {field.type} </i>{" "}
                     </Typography>
                   }
-                  secondary={<Typography>{field.description}</Typography>}
+                  secondary={
+                    <Typography color={"textSecondary"}>
+                      {field.description}
+                    </Typography>
+                  }
                 />
               </ListItem>
             ))}

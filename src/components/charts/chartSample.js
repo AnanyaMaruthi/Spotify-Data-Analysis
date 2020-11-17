@@ -8,10 +8,9 @@ const ChartSample = () => {
   const data = (canvas) => {
     const ctx = canvas.getContext("2d");
     const gradient = ctx.createLinearGradient(500, 0, 100, 0);
-    gradient.addColorStop(1, `rgba(255, 180, 162, 0.5)`);
-    gradient.addColorStop(0.5, `rgba(255, 180, 162, 0.5)`);
-    gradient.addColorStop(0, `rgba(107, 67, 102, 0.75)`);
-
+    gradient.addColorStop(1, "#1d3557");
+    gradient.addColorStop(0, "#83c5be");
+    // gradient.addColorStop(1, "#fdfcdc");
     return {
       labels: ["January", "February", "March", "April", "May", "June", "July"],
       datasets: [

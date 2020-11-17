@@ -1,15 +1,15 @@
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
 
-const primary = `#FFF2EB`;
+const primary = `#fdfcdc`;
 const light = `#E8D9DC`;
-const secondary = `#6B4366`;
+const secondary = `#1d3557`;
 
 const error = `#DD7575`;
 const success = `#8EC37F`;
 
-const textPrimary = `#6B4366`;
-const textSecondary = `#F1E4ED`;
+const textPrimary = `#1d3557`;
+const textSecondary = `white`;
 const textDisabled = `#00000061`;
 
 const backgroundDefault = `#FFFFFF`;
