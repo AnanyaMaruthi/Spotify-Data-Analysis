@@ -6,7 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/core/styles";
-import Stackedbar5 from "./charts/stackedBar5";
+import Stackedbar5 from "../charts/stackedBar5";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AnalyticsItem = () => {
+const ChartSection1 = () => {
   const classes = useStyles();
   const [year, setYear] = useState(1921);
 
@@ -68,4 +68,4 @@ const AnalyticsItem = () => {
   );
 };
 
-export default AnalyticsItem;
+export default ChartSection1;

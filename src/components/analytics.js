@@ -2,11 +2,11 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import AnalyticsItem from "./analyticsItem";
+import ChartSection1 from "./chartSections/chartSection1";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "white", // "#E8D9DC",
+    backgroundColor: "white",
     padding: theme.spacing(5),
   },
   heading: {
@@ -21,7 +21,7 @@ const Analytics = () => {
       <Typography variant={"h1"} align={"center"} color={"textPrimary"}>
         Data Analysis
       </Typography>
-      <AnalyticsItem />
+      <ChartSection1 />
     </Box>
   );
 };
