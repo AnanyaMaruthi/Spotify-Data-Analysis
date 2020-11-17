@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import AudioFeaturesDistribution from "./chartSections/audioFeaturesDistribution";
 import { Divider } from "@material-ui/core";
+import AudioFeaturesTrends from "./chartSections/audioFeaturesTrends";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +29,8 @@ const Analytics = () => {
         Data Analysis
       </Typography>
       <AudioFeaturesDistribution />
+      <Divider />
+      <AudioFeaturesTrends />
     </Box>
   );
 };
