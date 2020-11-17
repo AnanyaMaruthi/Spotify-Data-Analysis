@@ -1,6 +1,10 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
+import json from "../../data/tracks_analysis.json";
 
+let jsonData = json["acousticnessDistByYear"];
+jsonData = jsonData.filter((row) => row["year"] === 1921);
+console.log(jsonData);
 const ChartSample = () => {
   //   const ref = React.createRef();
   //   ref.createLinearGradient(500, 0, 100, 0);
@@ -12,7 +16,8 @@ const ChartSample = () => {
     gradient.addColorStop(0, "#83c5be");
     // gradient.addColorStop(1, "#fdfcdc");
     return {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      // labels: ["January", "February", "March", "April", "May", "June", "July"],
+      labels: jsonData.map((row) => row["acousticness"]),
       datasets: [
         {
           label: "My First dataset",
@@ -33,7 +38,8 @@ const ChartSample = () => {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: [65, 59, 80, 81, 56, 55, 40],
+          // data: [65, 59, 80, 81, 56, 55, 40],
+          data: jsonData.map((row) => row["count"]),
         },
       ],
     };
