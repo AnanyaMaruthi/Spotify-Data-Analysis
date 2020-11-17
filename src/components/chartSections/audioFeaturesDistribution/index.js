@@ -6,7 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/core/styles";
-import Stackedbar5 from "../charts/stackedBar5";
+import Chart from "./chart";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ChartSection1 = () => {
+const AudioFeaturesDistribution = () => {
   const classes = useStyles();
   const [year, setYear] = useState(1921);
 
@@ -34,8 +34,8 @@ const ChartSection1 = () => {
 
   return (
     <Container maxWidth={"lg"} className={classes.root}>
-      <Typography variant={"h2"} align={"center"} style={{ color: "black" }}>
-        Some Analysis
+      <Typography variant={"h2"} align={"center"}>
+        {`Audio Features Distribution - Year ${year}`}
       </Typography>
 
       <FormControl className={classes.formControl}>
@@ -50,7 +50,7 @@ const ChartSection1 = () => {
         </Select>
       </FormControl>
 
-      <Stackedbar5 year={year} />
+      <Chart year={year} />
 
       <Typography variant={"body1"} style={{ color: "black" }}>
         {
@@ -68,4 +68,4 @@ const ChartSection1 = () => {
   );
 };
 
-export default ChartSection1;
+export default AudioFeaturesDistribution;
