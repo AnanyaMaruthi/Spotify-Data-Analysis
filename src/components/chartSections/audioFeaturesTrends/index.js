@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import { makeStyles } from "@material-ui/core/styles";
-// import Chart from "./chart";
+import Chart from "./chart";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 const AudioFeaturesTrends = () => {
   const classes = useStyles();
 
-  const [years, setYears] = useState([1921, 2020]);
+  const [years, setYears] = useState([2001, 2020]);
 
   return (
     <Container maxWidth={"lg"} className={classes.root}>
@@ -49,9 +49,9 @@ const AudioFeaturesTrends = () => {
         />
       </div>
 
-      {/* <Chart year={year} /> */}
+      <Chart startYear={years[0]} endYear={years[1]} />
 
-      {/* <Typography variant={"body1"} style={{ color: "black" }}>
+      <Typography variant={"body1"} style={{ color: "black" }}>
         {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         }
@@ -62,7 +62,7 @@ const AudioFeaturesTrends = () => {
                   $aggregate: {do something}
                 }
               })`}
-      </Typography> */}
+      </Typography>
     </Container>
   );
 };
