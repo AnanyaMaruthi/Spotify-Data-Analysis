@@ -2,6 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import data from "../../../data/tracks_analysis (1).json";
 
+const colors = {
+  acousticness: `rgba(34, 87, 122, 0.8)`,
+  danceability: `rgba(56, 163, 165, 0.8)`,
+  energy: `rgba(87, 204, 153, 0.8)`,
+  instrumentalness: `rgba(128, 237, 153, 0.8)`,
+  liveliness: `rgba(199, 249, 204, 0.8)`,
+  speechiness: `rgba(255, 205, 178, 0.8)`,
+  valence: `rgba(77, 25, 77, 0.8)`,
+};
+
 const Chart = ({ startYear, endYear }) => {
   const inputData = data["tracksStatsByYear"];
 
@@ -13,16 +23,6 @@ const Chart = ({ startYear, endYear }) => {
   const [speechiness, setSpeechiness] = useState([]);
   const [valence, setValence] = useState([]);
   const [labels, setLabels] = useState([]);
-
-  const colors = {
-    acousticness: `rgba(34, 87, 122, 0.8)`,
-    danceability: `rgba(56, 163, 165, 0.8)`,
-    energy: `rgba(87, 204, 153, 0.8)`,
-    instrumentalness: `rgba(128, 237, 153, 0.8)`,
-    liveliness: `rgba(199, 249, 204, 0.8)`,
-    speechiness: `rgba(255, 205, 178, 0.8)`,
-    valence: `rgba(77, 25, 77, 0.8)`,
-  };
 
   //   canvas dataset
   const getDataset = (data, color, label) => ({
