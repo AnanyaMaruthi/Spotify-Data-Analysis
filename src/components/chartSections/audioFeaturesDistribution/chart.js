@@ -1,78 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
-import data from "../../../data/tracks_analysis.json";
 
-const Chart = ({ year }) => {
-  const labels = data["acousticnessDistByYear"]
-    .filter((row) => row["year"] === year)
-    .map((row) => row["acousticness"]);
+const colors = {
+  acousticness: `rgba(34, 87, 122, 0.8)`,
+  danceability: `rgba(56, 163, 165, 0.8)`,
+  energy: `rgba(87, 204, 153, 0.8)`,
+  instrumentalness: `rgba(128, 237, 153, 0.8)`,
+  liveness: `rgba(199, 249, 204, 0.8)`,
+  speechiness: `rgba(255, 205, 178, 0.8)`,
+  valence: `rgba(77, 25, 77, 0.8)`,
+};
 
-  const inputData = [
-    {
-      data: data["acousticnessDistByYear"]
-        .filter((row) => row["year"] === year)
-        .map((row) => row["count"]),
-      color: `rgba(34, 87, 122, 0.8)`,
-      label: "Acousticness",
-    },
-    {
-      data: data["energyDistByYear"]
-        .filter((row) => row["year"] === year)
-        .map((row) => row["count"]),
-      color: `rgba(56, 163, 165, 0.8)`,
-      label: "Energy",
-    },
-    {
-      data: data["instrumentalnessDistByYear"]
-        .filter((row) => row["year"] === year)
-        .map((row) => row["count"]),
-      color: `rgba(87, 204, 153, 0.8)`,
-      label: "Instrumentalness",
-    },
-    {
-      data: data["livenessDistByYear"]
-        .filter((row) => row["year"] === year)
-        .map((row) => row["count"]),
-      color: `rgba(128, 237, 153, 0.8)`,
-      label: "Liveliness",
-    },
-    {
-      data: data["speechinessDistByYear"]
-        .filter((row) => row["year"] === year)
-        .map((row) => row["count"]),
-      color: `rgba(199, 249, 204, 0.8)`,
-      label: "Speechiness",
-    },
-    {
-      data: data["valenceDistByYear"]
-        .filter((row) => row["year"] === year)
-        .map((row) => row["count"]),
-      color: `rgba(247, 247, 182, 0.8)`,
-      label: "Valence",
-    },
-  ];
+const Chart = ({ year, data }) => {
+  const [datasets, setDatasets] = useState([]);
+  const [labels, setLabels] = useState([]);
 
-  const getDatasets = (data) =>
-    data.map((dataElement) => ({
-      label: `${dataElement["label"]} - Year ${year}`,
-      fill: true,
-      lineTension: 0.1,
-      backgroundColor: dataElement["color"],
-      borderColor: dataElement["color"],
-      borderCapStyle: "butt",
-      pointBorderColor: "rgba(0,0,0,1)",
-      pointBackgroundColor: dataElement["color"],
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: dataElement["color"],
-      pointHoverBorderColor: "rgba(0,0,0,1)",
-      pointHoverBorderWidth: 2,
-      data: dataElement["data"],
-    }));
+  useEffect(() => {
+    const getDatasets = (data) =>
+      Object.entries(data).map(([key, value]) => {
+        console.log(key);
+        return {
+          label: `${key} - Year ${year}`,
+          fill: true,
+          lineTension: 0.1,
+          backgroundColor: colors[key],
+          borderColor: colors[key],
+          borderCapStyle: "butt",
+          pointBorderColor: "rgba(0,0,0,1)",
+          pointBackgroundColor: colors[key],
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: colors[key],
+          pointHoverBorderColor: "rgba(0,0,0,1)",
+          pointHoverBorderWidth: 2,
+          data: value["values"],
+        };
+      });
+    setDatasets(getDatasets(data));
+    setLabels(data["acousticness"]["labels"]);
+  }, [data, year]);
 
   const canvasData = {
     labels: labels,
-    datasets: getDatasets(inputData),
+    datasets: datasets,
   };
 
   const canvasOptions = {

@@ -7,6 +7,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/core/styles";
 import Chart from "./chart";
+import data from "../../../data/tracks_analysis (1).json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
 const AudioFeaturesDistribution = () => {
   const classes = useStyles();
   const [year, setYear] = useState(1921);
+
+  // todo: modify this to fetch data when year changes
+  const [inputData, setInputData] = useState(data["tracksDistForYear"]);
 
   const menuItems = [];
   for (let i = 1921; i <= 2020; i++) {
@@ -50,7 +54,7 @@ const AudioFeaturesDistribution = () => {
         </Select>
       </FormControl>
 
-      <Chart year={year} />
+      <Chart year={year} data={inputData} />
 
       <Typography variant={"body1"} style={{ color: "black" }}>
         {
