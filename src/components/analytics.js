@@ -6,6 +6,7 @@ import AudioFeaturesDistribution from "./chartSections/audioFeaturesDistribution
 import { Divider } from "@material-ui/core";
 import AudioFeaturesTrends from "./chartSections/audioFeaturesTrends";
 import TopTracks from "./chartSections/topTracks";
+import ArtistVersatility from "./chartSections/artistVersatility";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +34,10 @@ const Analytics = () => {
       <Divider />
       <AudioFeaturesTrends />
       <Divider />
+      <ArtistVersatility />
+      <Divider />
       <TopTracks />
+      <Divider />
     </Box>
   );
 };
