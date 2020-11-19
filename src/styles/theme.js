@@ -3,7 +3,7 @@ import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
 
 const primary = `#fdfcdc`;
 const light = `#E8D9DC`;
-const secondary = `#1d3557`;
+const secondary = `#4D194D`;
 
 const error = `#DD7575`;
 const success = `#8EC37F`;
