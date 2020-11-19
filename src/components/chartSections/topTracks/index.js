@@ -71,11 +71,11 @@ const TopTracks = () => {
             color={"secondary"}
           />
         </div>
-        {/* <Typography variant={"body1"}>
+        <Typography variant={"body1"}>
           {`${data[trackNumber - 1]["name"]} by ${data[trackNumber - 1][
             "artists"
           ].join(", ")}`}
-        </Typography> */}
+        </Typography>
       </div>
 
       <Chart

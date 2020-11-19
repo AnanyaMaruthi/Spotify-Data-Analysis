@@ -2,7 +2,7 @@ import React from "react";
 import { Radar } from "react-chartjs-2";
 
 const Chart = ({ trackData, trackName, labels }) => {
-  const color = `rgba(56, 163, 165, 0.8)`;
+  const color = `rgba(56, 163, 165, 0.5)`;
 
   const canvasData = {
     labels: labels,
@@ -42,6 +42,9 @@ const Chart = ({ trackData, trackName, labels }) => {
         stepSize: 0.1,
       },
     },
+    animation: {
+      duration: 0
+    }
   };
 
   return (

@@ -69,26 +69,38 @@ const Chart = ({ startYear, endYear }) => {
 
     if (labelsTemp.length !== 0) {
       setAcousticness(
-        getDataset(acousticnessTemp, colors["acousticness"], "Acousticness")
+        getDataset(
+          acousticnessTemp,
+          colors["acousticness"],
+          "Average Acousticness"
+        )
       );
       setDanceability(
-        getDataset(danceabilityTemp, colors["danceability"], "Danceability")
+        getDataset(
+          danceabilityTemp,
+          colors["danceability"],
+          "Average Danceability"
+        )
       );
-      setEnergy(getDataset(energyTemp, colors["energy"], "Energy"));
+      setEnergy(getDataset(energyTemp, colors["energy"], "Average Energy"));
       setInstrumentalness(
         getDataset(
           instrumentalnessTemp,
           colors["instrumentalness"],
-          "Instrumentalness"
+          "Average Instrumentalness"
         )
       );
       setLiveliness(
-        getDataset(livelinessTemp, colors["liveliness"], "Liveliness")
+        getDataset(livelinessTemp, colors["liveliness"], "Average Liveliness")
       );
       setSpeechiness(
-        getDataset(speechinessTemp, colors["speechiness"], "Speechiness")
+        getDataset(
+          speechinessTemp,
+          colors["speechiness"],
+          "Average Speechiness"
+        )
       );
-      setValence(getDataset(valenceTemp, colors["valence"], "Valence"));
+      setValence(getDataset(valenceTemp, colors["valence"], "Average Valence"));
       setLabels(labelsTemp);
     }
   }, [startYear, endYear, inputData]);
