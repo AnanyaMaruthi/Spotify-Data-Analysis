@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
-import data from "../../../data/tracks_analysis (1).json";
+import React, { useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
+import data from '../../../data/tracks_analysis (1).json';
 
 const colors = {
   acousticness: `rgba(34, 87, 122, 0.8)`,
@@ -13,7 +13,7 @@ const colors = {
 };
 
 const Chart = ({ startYear, endYear }) => {
-  const inputData = data["tracksStatsByYear"];
+  const inputData = data['tracksStatsByYear'];
 
   const [acousticness, setAcousticness] = useState([]);
   const [danceability, setDanceability] = useState([]);
@@ -31,13 +31,13 @@ const Chart = ({ startYear, endYear }) => {
     lineTension: 0.1,
     backgroundColor: color,
     borderColor: color,
-    borderCapStyle: "butt",
+    borderCapStyle: 'butt',
     pointBorderColor: color,
     pointBackgroundColor: color,
     pointBorderWidth: 1,
     pointHoverRadius: 5,
     pointHoverBackgroundColor: color,
-    pointHoverBorderColor: "rgba(0,0,0,1)",
+    pointHoverBorderColor: 'rgba(0,0,0,1)',
     pointHoverBorderWidth: 2,
     data: data,
   });
@@ -55,81 +55,47 @@ const Chart = ({ startYear, endYear }) => {
       labelsTemp = [];
 
     inputData.map((row) => {
-      if (row["year"] >= startYear && row["year"] <= endYear) {
-        acousticnessTemp.push(row["acousticnessAvg"]);
-        danceabilityTemp.push(row["danceabilityAvg"]);
-        energyTemp.push(row["energyAvg"]);
-        instrumentalnessTemp.push(row["instrumentalnessAvg"]);
-        livelinessTemp.push(row["livenessAvg"]);
-        speechinessTemp.push(row["speechinessAvg"]);
-        valenceTemp.push(row["valenceAvg"]);
-        labelsTemp.push(row["year"]);
+      if (row['year'] >= startYear && row['year'] <= endYear) {
+        acousticnessTemp.push(row['acousticnessAvg']);
+        danceabilityTemp.push(row['danceabilityAvg']);
+        energyTemp.push(row['energyAvg']);
+        instrumentalnessTemp.push(row['instrumentalnessAvg']);
+        livelinessTemp.push(row['livenessAvg']);
+        speechinessTemp.push(row['speechinessAvg']);
+        valenceTemp.push(row['valenceAvg']);
+        labelsTemp.push(row['year']);
       }
     });
 
     if (labelsTemp.length !== 0) {
-      setAcousticness(
-        getDataset(
-          acousticnessTemp,
-          colors["acousticness"],
-          "Average Acousticness"
-        )
-      );
-      setDanceability(
-        getDataset(
-          danceabilityTemp,
-          colors["danceability"],
-          "Average Danceability"
-        )
-      );
-      setEnergy(getDataset(energyTemp, colors["energy"], "Average Energy"));
-      setInstrumentalness(
-        getDataset(
-          instrumentalnessTemp,
-          colors["instrumentalness"],
-          "Average Instrumentalness"
-        )
-      );
-      setLiveliness(
-        getDataset(livelinessTemp, colors["liveliness"], "Average Liveliness")
-      );
-      setSpeechiness(
-        getDataset(
-          speechinessTemp,
-          colors["speechiness"],
-          "Average Speechiness"
-        )
-      );
-      setValence(getDataset(valenceTemp, colors["valence"], "Average Valence"));
+      setAcousticness(getDataset(acousticnessTemp, colors['acousticness'], 'Average Acousticness'));
+      setDanceability(getDataset(danceabilityTemp, colors['danceability'], 'Average Danceability'));
+      setEnergy(getDataset(energyTemp, colors['energy'], 'Average Energy'));
+      setInstrumentalness(getDataset(instrumentalnessTemp, colors['instrumentalness'], 'Average Instrumentalness'));
+      setLiveliness(getDataset(livelinessTemp, colors['liveliness'], 'Average Liveliness'));
+      setSpeechiness(getDataset(speechinessTemp, colors['speechiness'], 'Average Speechiness'));
+      setValence(getDataset(valenceTemp, colors['valence'], 'Average Valence'));
       setLabels(labelsTemp);
     }
   }, [startYear, endYear, inputData]);
 
   const canvasData = {
     labels: labels,
-    datasets: [
-      acousticness,
-      danceability,
-      energy,
-      instrumentalness,
-      liveliness,
-      speechiness,
-      valence,
-    ],
+    datasets: [acousticness, danceability, energy, instrumentalness, liveliness, speechiness, valence],
   };
 
   const canvasOptions = {
     maintainAspectRatio: true,
     responsive: false,
     legend: {
-      position: "right",
+      position: 'right',
     },
     scales: {
       yAxes: [
         {
           scaleLabel: {
             display: true,
-            labelString: "Feature value",
+            labelString: 'Feature value',
           },
           ticks: {
             max: 1,
@@ -141,7 +107,7 @@ const Chart = ({ startYear, endYear }) => {
         {
           scaleLabel: {
             display: true,
-            labelString: "Year",
+            labelString: 'Year',
           },
         },
       ],
@@ -149,13 +115,8 @@ const Chart = ({ startYear, endYear }) => {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <Line
-        data={canvasData}
-        width={1300}
-        height={500}
-        options={canvasOptions}
-      />
+    <div style={{ textAlign: 'center' }}>
+      <Line data={canvasData} width={1300} height={500} options={canvasOptions} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import responsiveFontSizes from '@material-ui/core/styles/responsiveFontSizes';
 
 const primary = `#1d3557`;
 const light = `#E8D9DC`;
@@ -61,31 +61,31 @@ const theme = responsiveFontSizes(
       fontFamily: `-apple-system, "Segoe UI", system-ui, BlinkMacSystemFont,  Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif`,
       h1: {
         fontFamily: `ui-serif, serif`,
-        fontSize: "2.5rem",
-        fontWeight: "700",
+        fontSize: '2.5rem',
+        fontWeight: '700',
         color: primary,
       },
       h2: {
-        fontSize: "1.5rem",
-        fontWeight: "600",
+        fontSize: '1.5rem',
+        fontWeight: '600',
         color: textPrimary,
       },
       h3: {
-        fontSize: "1.25rem",
-        fontWeight: "400",
+        fontSize: '1.25rem',
+        fontWeight: '400',
         color: primary,
       },
       h4: {
-        fontSize: "1rem",
-        fontWeight: "600",
+        fontSize: '1rem',
+        fontWeight: '600',
         color: primary,
       },
       body1: {
-        fontSize: "1rem",
+        fontSize: '1rem',
         color: textPrimary,
       },
       button: {
-        fontSize: "1rem",
+        fontSize: '1rem',
         color: white,
       },
     },

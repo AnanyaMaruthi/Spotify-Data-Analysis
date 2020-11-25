@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import React, { useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
 
 const colors = {
   acousticness: `rgba(34, 87, 122, 0.8)`,
@@ -28,13 +28,13 @@ const Chart = ({ data }) => {
     lineTension: 0.1,
     backgroundColor: color,
     borderColor: color,
-    borderCapStyle: "butt",
+    borderCapStyle: 'butt',
     pointBorderColor: color,
     pointBackgroundColor: color,
     pointBorderWidth: 1,
     pointHoverRadius: 5,
     pointHoverBackgroundColor: color,
-    pointHoverBorderColor: "rgba(0,0,0,1)",
+    pointHoverBorderColor: 'rgba(0,0,0,1)',
     pointHoverBorderWidth: 2,
     data: data,
   });
@@ -52,68 +52,46 @@ const Chart = ({ data }) => {
       labelsTemp = [];
 
     data.map((row) => {
-      acousticnessTemp.push(row["acousticness"]);
-      danceabilityTemp.push(row["danceability"]);
-      energyTemp.push(row["energy"]);
-      instrumentalnessTemp.push(row["instrumentalness"]);
-      livelinessTemp.push(row["liveness"]);
-      speechinessTemp.push(row["speechiness"]);
-      valenceTemp.push(row["valence"]);
-      labelsTemp.push(row["name"]);
+      acousticnessTemp.push(row['acousticness']);
+      danceabilityTemp.push(row['danceability']);
+      energyTemp.push(row['energy']);
+      instrumentalnessTemp.push(row['instrumentalness']);
+      livelinessTemp.push(row['liveness']);
+      speechinessTemp.push(row['speechiness']);
+      valenceTemp.push(row['valence']);
+      labelsTemp.push(row['name']);
       return 0;
     });
 
     if (labelsTemp.length !== 0) {
-      setAcousticness(
-        getDataset(acousticnessTemp, colors["acousticness"], "Acousticness")
-      );
-      setDanceability(
-        getDataset(danceabilityTemp, colors["danceability"], "Danceability")
-      );
-      setEnergy(getDataset(energyTemp, colors["energy"], "Energy"));
-      setInstrumentalness(
-        getDataset(
-          instrumentalnessTemp,
-          colors["instrumentalness"],
-          "Instrumentalness"
-        )
-      );
-      setLiveliness(
-        getDataset(livelinessTemp, colors["liveliness"], "Liveliness")
-      );
-      setSpeechiness(
-        getDataset(speechinessTemp, colors["speechiness"], "Speechiness")
-      );
-      setValence(getDataset(valenceTemp, colors["valence"], "Valence"));
+      setAcousticness(getDataset(acousticnessTemp, colors['acousticness'], 'Acousticness'));
+      setDanceability(getDataset(danceabilityTemp, colors['danceability'], 'Danceability'));
+      setEnergy(getDataset(energyTemp, colors['energy'], 'Energy'));
+      setInstrumentalness(getDataset(instrumentalnessTemp, colors['instrumentalness'], 'Instrumentalness'));
+      setLiveliness(getDataset(livelinessTemp, colors['liveliness'], 'Liveliness'));
+      setSpeechiness(getDataset(speechinessTemp, colors['speechiness'], 'Speechiness'));
+      setValence(getDataset(valenceTemp, colors['valence'], 'Valence'));
       setLabels(labelsTemp);
     }
   }, [data]);
 
   const canvasData = {
     labels: labels,
-    datasets: [
-      acousticness,
-      danceability,
-      energy,
-      instrumentalness,
-      liveliness,
-      speechiness,
-      valence,
-    ],
+    datasets: [acousticness, danceability, energy, instrumentalness, liveliness, speechiness, valence],
   };
 
   const canvasOptions = {
     maintainAspectRatio: true,
     responsive: false,
     legend: {
-      position: "right",
+      position: 'right',
     },
     scales: {
       yAxes: [
         {
           scaleLabel: {
             display: true,
-            labelString: "Feature value",
+            labelString: 'Feature value',
           },
           ticks: {
             max: 1,
@@ -125,7 +103,7 @@ const Chart = ({ data }) => {
         {
           scaleLabel: {
             display: true,
-            labelString: "Song",
+            labelString: 'Song',
           },
         },
       ],
@@ -133,13 +111,8 @@ const Chart = ({ data }) => {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <Line
-        data={canvasData}
-        width={1300}
-        height={500}
-        options={canvasOptions}
-      />
+    <div style={{ textAlign: 'center' }}>
+      <Line data={canvasData} width={1300} height={500} options={canvasOptions} />
     </div>
   );
 };

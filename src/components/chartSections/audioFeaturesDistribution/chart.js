@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Bar } from "react-chartjs-2";
+import React, { useEffect, useState } from 'react';
+import { Bar } from 'react-chartjs-2';
 
 const colors = {
   acousticness: `rgba(34, 87, 122, 0.8)`,
@@ -25,19 +25,19 @@ const Chart = ({ year, data }) => {
           lineTension: 0.1,
           backgroundColor: colors[key],
           borderColor: colors[key],
-          borderCapStyle: "butt",
-          pointBorderColor: "rgba(0,0,0,1)",
+          borderCapStyle: 'butt',
+          pointBorderColor: 'rgba(0,0,0,1)',
           pointBackgroundColor: colors[key],
           pointBorderWidth: 1,
           pointHoverRadius: 5,
           pointHoverBackgroundColor: colors[key],
-          pointHoverBorderColor: "rgba(0,0,0,1)",
+          pointHoverBorderColor: 'rgba(0,0,0,1)',
           pointHoverBorderWidth: 2,
-          data: value["values"],
+          data: value['values'],
         };
       });
     setDatasets(getDatasets(data));
-    setLabels(data["acousticness"]["labels"]);
+    setLabels(data['acousticness']['labels']);
   }, [data, year]);
 
   const canvasData = {
@@ -49,14 +49,14 @@ const Chart = ({ year, data }) => {
     maintainAspectRatio: true,
     responsive: false,
     legend: {
-      position: "right",
+      position: 'right',
     },
     scales: {
       yAxes: [
         {
           scaleLabel: {
             display: true,
-            labelString: "Count (Frequency)",
+            labelString: 'Count (Frequency)',
           },
         },
       ],
@@ -64,20 +64,15 @@ const Chart = ({ year, data }) => {
         {
           scaleLabel: {
             display: true,
-            labelString: "Feature Value",
+            labelString: 'Feature Value',
           },
         },
       ],
     },
   };
   return (
-    <div style={{ textAlign: "center" }}>
-      <Bar
-        data={canvasData}
-        width={1300}
-        height={500}
-        options={canvasOptions}
-      />
+    <div style={{ textAlign: 'center' }}>
+      <Bar data={canvasData} width={1300} height={500} options={canvasOptions} />
     </div>
   );
 };

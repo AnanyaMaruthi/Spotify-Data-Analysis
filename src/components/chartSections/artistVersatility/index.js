@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import { Autocomplete } from "@material-ui/lab";
-import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
-import Chart from "./chart";
-import data from "../../../data/versatility.json";
+import React, { useState } from 'react';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import { Autocomplete } from '@material-ui/lab';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Chart from './chart';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
   },
   slider: {
     width: 275,
-    float: "right",
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: "15px",
+    float: 'right',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: '15px',
     marginTop: theme.spacing(4),
   },
 }));
@@ -29,43 +29,96 @@ const useStyles = makeStyles((theme) => ({
 const ArtistVersatility = () => {
   const classes = useStyles();
 
-  const [artist, setArtist] = useState("Ananya");
-  const [inputData, setInputData] = useState(data);
+  const [artists, setArtists] = useState([]);
+  const [artist, setArtist] = useState('2Pac');
+  const [inputData, setInputData] = useState({});
+
+  const [init, setInit] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  const initialize = async () => {
+    const [response, artist_response] = await Promise.all([
+      fetch('http://localhost:8080/api/v1/artists/names'),
+      fetch('http://localhost:8080/api/v1/artists/2Pac'),
+    ]);
+
+    if (artist_response.ok) {
+      let data = await artist_response.json();
+      setInputData(data);
+    }
+
+    if (response.ok) {
+      let data = await response.json();
+      const final = [];
+      data.forEach((lol) => {
+        if (!(['$', '\\', '(', '&', '-', '.', '*', '+', '0'].includes(lol[0]) || lol.length > 30)) {
+          final.push(lol);
+        }
+      });
+      setArtists(final);
+      setLoading(false);
+    }
+  };
+
+  if (init) {
+    setInit(false);
+    initialize();
+  }
+
+  const selectArtist = async (value) => {
+    setArtist(value ? value : '2Pac');
+    const response = await fetch('http://localhost:8080/api/v1/artists/' + artist);
+    if (response.ok) {
+      let data = await response.json();
+      setInputData(data);
+    }
+  };
 
   //   todo: make api call and Update inputData everytime artist changes
 
   return (
-    <Container maxWidth={"lg"} className={classes.root}>
-      <Typography variant={"h2"} align={"center"}>
+    <Container maxWidth={'lg'} className={classes.root}>
+      <Typography variant={'h2'} align={'center'}>
         {`Artist Versatility - ${artist}`}
       </Typography>
 
-      {/* todo: fix this  */}
       <Autocomplete
-        defaultValue={"Ananya"}
-        id={"location-input"}
-        onChange={(event, value) => {
-          setArtist(value);
-        }}
-        options={["Ananya", "Nitesh"]}
+        style={{ width: 300 }}
+        open={open}
+        onOpen={() => setOpen(true)}
+        onClose={() => setOpen(false)}
+        onChange={(e, value) => selectArtist(value)}
+        options={artists}
+        loading={loading}
         renderInput={(params) => (
           <TextField
             {...params}
+            label='Artist'
+            variant='outlined'
             InputProps={{
-              placeholder: "Select Artist",
+              ...params.InputProps,
+              endAdornment: (
+                <React.Fragment>
+                  {loading ? <CircularProgress color='inherit' size={20} /> : null}
+                  {params.InputProps.endAdornment}
+                </React.Fragment>
+              ),
             }}
-            variant="outlined"
           />
         )}
       />
-      <Chart data={inputData} />
 
-      <Typography variant={"body1"} style={{ color: "black" }}>
-        {
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        }
+      {JSON.stringify(inputData) !== '{}' && <Chart data={inputData} />}
+
+      <Typography variant={'body1'} style={{ color: 'black' }}>
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.'
       </Typography>
-      <Typography variant={"caption"}>
+      <Typography variant={'caption'}>
         {`db.collection.find({
                 blabla: {
                   $aggregate: {do something}

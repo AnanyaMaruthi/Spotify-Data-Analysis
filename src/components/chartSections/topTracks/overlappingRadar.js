@@ -1,5 +1,5 @@
-import React from "react";
-import { Radar } from "react-chartjs-2";
+import React from 'react';
+import { Radar } from 'react-chartjs-2';
 
 const OvelappingChart = ({ data }) => {
   const colors = [
@@ -12,39 +12,31 @@ const OvelappingChart = ({ data }) => {
     `rgba(56, 163, 165, 0.75)`,
   ];
 
-  const labels = [
-    "acousticness",
-    "danceability",
-    "energy",
-    "instrumentalness",
-    "liveness",
-    "speechiness",
-    "valence",
-  ];
+  const labels = ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'speechiness', 'valence'];
 
   const getDatsets = (data) => {
     return data.map((row, index) => ({
-      label: row["name"],
+      label: row['name'],
       fill: true,
       lineTension: 0.1,
       backgroundColor: colors[index],
       borderColor: colors[index],
-      borderCapStyle: "butt",
+      borderCapStyle: 'butt',
       pointBorderColor: colors[index],
       pointBackgroundColor: colors[index],
       pointBorderWidth: 1,
       pointHoverRadius: 5,
       pointHoverBackgroundColor: colors[index],
-      pointHoverBorderColor: "rgba(0,0,0,1)",
+      pointHoverBorderColor: 'rgba(0,0,0,1)',
       pointHoverBorderWidth: 2,
       data: [
-        row["acousticness"],
-        row["danceability"],
-        row["energy"],
-        row["instrumentalness"],
-        row["liveness"],
-        row["speechiness"],
-        row["valence"],
+        row['acousticness'],
+        row['danceability'],
+        row['energy'],
+        row['instrumentalness'],
+        row['liveness'],
+        row['speechiness'],
+        row['valence'],
       ],
     }));
   };
@@ -58,7 +50,7 @@ const OvelappingChart = ({ data }) => {
     maintainAspectRatio: true,
     responsive: false,
     legend: {
-      position: "bottom",
+      position: 'bottom',
     },
     scale: {
       angleLines: {
@@ -73,13 +65,8 @@ const OvelappingChart = ({ data }) => {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "45px" }}>
-      <Radar
-        data={canvasData}
-        width={700}
-        height={400}
-        options={canvasOptions}
-      />
+    <div style={{ textAlign: 'center', marginTop: '45px' }}>
+      <Radar data={canvasData} width={700} height={400} options={canvasOptions} />
     </div>
   );
 };

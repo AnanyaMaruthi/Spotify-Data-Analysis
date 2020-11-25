@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Dialog from "@material-ui/core/Dialog";
-import Box from "@material-ui/core/Box";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
-import Chip from "@material-ui/core/Chip";
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import Box from '@material-ui/core/Box';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: "500px",
+    minWidth: '500px',
   },
   sliderSection: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingTop: theme.spacing(4),
   },
   slider: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Form = ({ type, data, open, handleClose }) => {
+const Form = ({ data, open, handleClose }) => {
   const classes = useStyles();
 
   const [trackName, setTrackName] = useState(data.name);
@@ -37,9 +37,7 @@ const Form = ({ type, data, open, handleClose }) => {
   const [acousticness, setAcousticness] = useState(data.acousticness);
   const [danceability, setDanceability] = useState(data.danceability);
   const [energy, setEnergy] = useState(data.energy);
-  const [instrumentalness, setInstrumentalness] = useState(
-    data.instrumentalness
-  );
+  const [instrumentalness, setInstrumentalness] = useState(data.instrumentalness);
   const [liveness, setLiveness] = useState(data.liveness);
   const [loudness, setLoudness] = useState(data.loudness);
   const [speechiness, setSpeechiness] = useState(data.speechiness);
@@ -47,12 +45,10 @@ const Form = ({ type, data, open, handleClose }) => {
   const [valence, setValence] = useState(data.valence);
   const [popularity, setPopularity] = useState(data.popularity);
   const [artists, setArtists] = useState(data.artists);
-  const [inputArtist, setInputArtist] = useState("");
+  const [inputArtist, setInputArtist] = useState('');
 
   const handleArtistDelete = (artistToDelete) => () => {
-    setArtists((artists) =>
-      artists.filter((artist) => artist !== artistToDelete)
-    );
+    setArtists((artists) => artists.filter((artist) => artist !== artistToDelete));
   };
 
   const handleArtistAdd = (e) => {
@@ -60,39 +56,35 @@ const Form = ({ type, data, open, handleClose }) => {
       artists.push(inputArtist);
       return artists;
     });
-    setInputArtist("");
+    setInputArtist('');
   };
 
   return (
     <Dialog
       open={open}
       onClose={handleClose}
-      scroll={"paper"}
-      aria-labelledby="form-dialog-title"
-      aria-describedby="form-dialog-description"
+      scroll={'paper'}
+      aria-labelledby='form-dialog-title'
+      aria-describedby='form-dialog-description'
     >
-      <DialogTitle id="form-dialog-title">{`${type} Track`}</DialogTitle>
+      <DialogTitle id='form-dialog-title'>{`Track`}</DialogTitle>
       <DialogContent dividers={true} className={classes.root}>
         <form>
-          <Box
-            display="flex"
-            flexDirection="row"
-            justifyContent={"space-between"}
-          >
+          <Box display='flex' flexDirection='row' justifyContent={'space-between'}>
             <TextField
               autoFocus
-              margin="dense"
-              id="track-name"
-              label="Track Name"
-              type="name"
+              margin='dense'
+              id='track-name'
+              label='Track Name'
+              type='name'
               value={trackName}
               onChange={(e) => setTrackName(e.target.value)}
             />
             <TextField
-              margin="dense"
-              id="track-year"
-              label="Year"
-              type="number"
+              margin='dense'
+              id='track-year'
+              label='Year'
+              type='number'
               value={year}
               onChange={(e) => setYear(e.target.value)}
             />
@@ -100,7 +92,7 @@ const Form = ({ type, data, open, handleClose }) => {
 
           <Box className={classes.sliderSection}>
             <Box className={classes.slider}>
-              <Typography id="acousticness-slider" variant={"body1"}>
+              <Typography id='acousticness-slider' variant={'body1'}>
                 {` Acousticness - ${acousticness}`}
               </Typography>
               <Slider
@@ -109,13 +101,13 @@ const Form = ({ type, data, open, handleClose }) => {
                 step={0.01}
                 value={acousticness}
                 onChange={(e, value) => setAcousticness(value)}
-                valueLabelDisplay="off"
-                aria-labelledby="acousticness-slider"
-                color={"primary"}
+                valueLabelDisplay='off'
+                aria-labelledby='acousticness-slider'
+                color={'primary'}
               />
             </Box>
             <Box className={classes.slider}>
-              <Typography id="danceability-slider" variant={"body1"}>
+              <Typography id='danceability-slider' variant={'body1'}>
                 {` Danceability - ${danceability}`}
               </Typography>
               <Slider
@@ -124,16 +116,16 @@ const Form = ({ type, data, open, handleClose }) => {
                 step={0.01}
                 value={danceability}
                 onChange={(e, value) => setDanceability(value)}
-                valueLabelDisplay="off"
-                aria-labelledby="danceability-slider"
-                color={"primary"}
+                valueLabelDisplay='off'
+                aria-labelledby='danceability-slider'
+                color={'primary'}
               />
             </Box>
           </Box>
 
           <Box className={classes.sliderSection}>
             <Box className={classes.slider}>
-              <Typography id="energy-slider" variant={"body1"}>
+              <Typography id='energy-slider' variant={'body1'}>
                 {` Energy - ${energy}`}
               </Typography>
               <Slider
@@ -142,13 +134,13 @@ const Form = ({ type, data, open, handleClose }) => {
                 step={0.01}
                 value={energy}
                 onChange={(e, value) => setEnergy(value)}
-                valueLabelDisplay="off"
-                aria-labelledby="energy-slider"
-                color={"primary"}
+                valueLabelDisplay='off'
+                aria-labelledby='energy-slider'
+                color={'primary'}
               />
             </Box>
             <Box className={classes.slider}>
-              <Typography id="instrumentalness-slider" variant={"body1"}>
+              <Typography id='instrumentalness-slider' variant={'body1'}>
                 {` Instrumentalness - ${instrumentalness}`}
               </Typography>
               <Slider
@@ -157,16 +149,16 @@ const Form = ({ type, data, open, handleClose }) => {
                 step={0.01}
                 value={instrumentalness}
                 onChange={(e, value) => setInstrumentalness(value)}
-                valueLabelDisplay="off"
-                aria-labelledby="instrumentalness-slider"
-                color={"primary"}
+                valueLabelDisplay='off'
+                aria-labelledby='instrumentalness-slider'
+                color={'primary'}
               />
             </Box>
           </Box>
 
           <Box className={classes.sliderSection}>
             <Box className={classes.slider}>
-              <Typography id="liveness-slider" variant={"body1"}>
+              <Typography id='liveness-slider' variant={'body1'}>
                 {` Liveness - ${liveness}`}
               </Typography>
               <Slider
@@ -175,13 +167,13 @@ const Form = ({ type, data, open, handleClose }) => {
                 step={0.01}
                 value={liveness}
                 onChange={(e, value) => setLiveness(value)}
-                valueLabelDisplay="off"
-                aria-labelledby="liveness-slider"
-                color={"primary"}
+                valueLabelDisplay='off'
+                aria-labelledby='liveness-slider'
+                color={'primary'}
               />
             </Box>
             <Box className={classes.slider}>
-              <Typography id="loudness-slider" variant={"body1"}>
+              <Typography id='loudness-slider' variant={'body1'}>
                 {` Loudness - ${loudness}`}
               </Typography>
               <Slider
@@ -190,16 +182,16 @@ const Form = ({ type, data, open, handleClose }) => {
                 step={1}
                 value={loudness}
                 onChange={(e, value) => setLoudness(value)}
-                valueLabelDisplay="off"
-                aria-labelledby="loudness-slider"
-                color={"primary"}
+                valueLabelDisplay='off'
+                aria-labelledby='loudness-slider'
+                color={'primary'}
               />
             </Box>
           </Box>
 
           <Box className={classes.sliderSection}>
             <Box className={classes.slider}>
-              <Typography id="speechiness-slider" variant={"body1"}>
+              <Typography id='speechiness-slider' variant={'body1'}>
                 {` Speechiness - ${speechiness}`}
               </Typography>
               <Slider
@@ -208,13 +200,13 @@ const Form = ({ type, data, open, handleClose }) => {
                 step={0.01}
                 value={speechiness}
                 onChange={(e, value) => setSpeechiness(value)}
-                valueLabelDisplay="off"
-                aria-labelledby="speechiness-slider"
-                color={"primary"}
+                valueLabelDisplay='off'
+                aria-labelledby='speechiness-slider'
+                color={'primary'}
               />
             </Box>
             <Box className={classes.slider}>
-              <Typography id="valence-slider" variant={"body1"}>
+              <Typography id='valence-slider' variant={'body1'}>
                 {` Valence - ${valence}`}
               </Typography>
               <Slider
@@ -223,16 +215,16 @@ const Form = ({ type, data, open, handleClose }) => {
                 step={0.01}
                 value={valence}
                 onChange={(e, value) => setValence(value)}
-                valueLabelDisplay="off"
-                aria-labelledby="valence-slider"
-                color={"primary"}
+                valueLabelDisplay='off'
+                aria-labelledby='valence-slider'
+                color={'primary'}
               />
             </Box>
           </Box>
 
           <Box className={classes.sliderSection}>
             <Box className={classes.slider}>
-              <Typography id="popularity-slider" variant={"body1"}>
+              <Typography id='popularity-slider' variant={'body1'}>
                 {` Popularity - ${popularity}`}
               </Typography>
               <Slider
@@ -241,13 +233,13 @@ const Form = ({ type, data, open, handleClose }) => {
                 step={1}
                 value={popularity}
                 onChange={(e, value) => setPopularity(value)}
-                valueLabelDisplay="off"
-                aria-labelledby="popularity-slider"
-                color={"primary"}
+                valueLabelDisplay='off'
+                aria-labelledby='popularity-slider'
+                color={'primary'}
               />
             </Box>
             <Box className={classes.slider}>
-              <Typography id="tempo-slider" variant={"body1"}>
+              <Typography id='tempo-slider' variant={'body1'}>
                 {` Tempo - ${tempo}`}
               </Typography>
               <Slider
@@ -256,24 +248,24 @@ const Form = ({ type, data, open, handleClose }) => {
                 step={1}
                 value={tempo}
                 onChange={(e, value) => setTempo(value)}
-                valueLabelDisplay="off"
-                aria-labelledby="tempo-slider"
-                color={"primary"}
+                valueLabelDisplay='off'
+                aria-labelledby='tempo-slider'
+                color={'primary'}
               />
             </Box>
           </Box>
 
-          <Box display="flex" flexDirection="row">
+          <Box display='flex' flexDirection='row'>
             <TextField
               fullWidth
-              margin="dense"
-              id="artist-name"
-              label="Add Artist"
-              type="name"
+              margin='dense'
+              id='artist-name'
+              label='Add Artist'
+              type='name'
               value={inputArtist}
               onChange={(e) => setInputArtist(e.target.value)}
             />
-            <Button color={"primary"} size={"small"} onClick={handleArtistAdd}>
+            <Button color={'primary'} size={'small'} onClick={handleArtistAdd}>
               Add
             </Button>
           </Box>
@@ -284,18 +276,18 @@ const Form = ({ type, data, open, handleClose }) => {
                 label={artist}
                 onDelete={handleArtistDelete(artist)}
                 className={classes.chip}
-                color={"primary"}
+                color={'primary'}
               />
             ))}
           </Box>
         </form>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="secondary">
+        <Button onClick={handleClose} color='secondary'>
           Cancel
         </Button>
-        <Button onClick={handleClose} color="primary">
-          {type}
+        <Button onClick={handleClose} color='primary'>
+          Confirm
         </Button>
       </DialogActions>
     </Dialog>
@@ -303,22 +295,3 @@ const Form = ({ type, data, open, handleClose }) => {
 };
 
 export default Form;
-
-Form.defaultProps = {
-  type: "Insert",
-  data: {
-    name: "",
-    year: "",
-    acousticness: 0,
-    danceability: 0,
-    energy: 0,
-    instrumentalness: 0,
-    liveness: 0,
-    loudness: -20,
-    speechiness: 0,
-    popularity: 0,
-    tempo: 60,
-    valence: 0,
-    artists: [],
-  },
-};
