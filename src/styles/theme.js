@@ -1,7 +1,7 @@
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
 
-const primary = `#fdfcdc`;
+const primary = `#1d3557`;
 const light = `#E8D9DC`;
 const secondary = `#4D194D`;
 
