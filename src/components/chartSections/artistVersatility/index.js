@@ -46,13 +46,15 @@ const ArtistVersatility = () => {
     if (artist_response.ok) {
       let data = await artist_response.json();
       setInputData(data);
+      console.log(data);
+      debugger;
     }
 
     if (response.ok) {
       let data = await response.json();
       const final = [];
       data.forEach((lol) => {
-        if (!(['$', '\\', '(', '&', '-', '.', '*', '+', '0'].includes(lol[0]) || lol.length > 30)) {
+        if (!(['$', '\\', '(', '&', '-', '.', '*', '+', '0'].includes(lol[0]) || lol.length > 30) && isNaN(lol)) {
           final.push(lol);
         }
       });
@@ -74,8 +76,6 @@ const ArtistVersatility = () => {
       setInputData(data);
     }
   };
-
-  //   todo: make api call and Update inputData everytime artist changes
 
   return (
     <Container maxWidth={'lg'} className={classes.root}>
