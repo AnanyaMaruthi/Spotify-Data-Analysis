@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core/styles';
 import Chart from './radar';
-import data from '../../../data/charts.json';
 import OvelappingChart from './overlappingRadar';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +29,21 @@ const useStyles = makeStyles((theme) => ({
 
 const TopTracks = () => {
   const classes = useStyles();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchData = async () => {
+    const response = await fetch(`http://localhost:8080/api/v1//tracks/charted`);
+    if (response.ok) {
+      let fetchedData = await response.json();
+      setData(fetchedData);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const [trackNumber, setTrackNumber] = useState(1);
   const labels = ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'speechiness', 'valence'];
@@ -48,34 +63,38 @@ const TopTracks = () => {
       <Typography variant={'h2'} align={'center'}>
         {`Top 100 Tracks - 2020`}
       </Typography>
+      {loading ? (
+        <CircularProgress color='inherit' size={100} />
+      ) : (
+        <>
+          <div>
+            <div className={classes.slider}>
+              <Typography id='year-slider'>Song</Typography>
+              <Slider
+                min={1}
+                max={100}
+                step={1}
+                value={trackNumber}
+                onChange={(e, newRange) => setTrackNumber(newRange)}
+                valueLabelDisplay='auto'
+                aria-labelledby='range-slider'
+                color={'secondary'}
+              />
+            </div>
+            <Typography variant={'body1'}>
+              {`${data[trackNumber - 1]['name']} by ${data[trackNumber - 1]['artists'].join(', ')}`}
+            </Typography>
+          </div>
 
-      <div>
-        <div className={classes.slider}>
-          <Typography id='year-slider'>Song</Typography>
-          <Slider
-            min={1}
-            max={100}
-            step={1}
-            value={trackNumber}
-            onChange={(e, newRange) => setTrackNumber(newRange)}
-            valueLabelDisplay='auto'
-            aria-labelledby='range-slider'
-            color={'secondary'}
+          <Chart
+            trackData={getRequiredData(data[trackNumber - 1])}
+            trackName={data[trackNumber - 1]['name']}
+            labels={labels}
           />
-        </div>
-        <Typography variant={'body1'}>
-          {`${data[trackNumber - 1]['name']} by ${data[trackNumber - 1]['artists'].join(', ')}`}
-        </Typography>
-      </div>
 
-      <Chart
-        trackData={getRequiredData(data[trackNumber - 1])}
-        trackName={data[trackNumber - 1]['name']}
-        labels={labels}
-      />
-
-      <OvelappingChart data={data.slice(0, 5)} />
-
+          <OvelappingChart data={data.slice(0, 5)} />
+        </>
+      )}
       <Typography variant={'body1'} style={{ color: 'black' }}>
         {
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'

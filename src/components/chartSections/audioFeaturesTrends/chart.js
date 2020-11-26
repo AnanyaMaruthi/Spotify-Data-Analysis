@@ -78,6 +78,7 @@ const Chart = ({ startYear, endYear }) => {
           valenceTemp.push(row['valenceAvg']);
           labelsTemp.push(row['year']);
         }
+        return 0;
       });
 
       if (labelsTemp.length !== 0) {
@@ -91,7 +92,7 @@ const Chart = ({ startYear, endYear }) => {
         setLabels(labelsTemp);
       }
     }
-  }, [startYear, endYear, inputData]);
+  }, [startYear, endYear, inputData, init]);
 
   const canvasData = {
     labels: labels,
