@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
 import { makeStyles } from '@material-ui/core/styles';
 import Chart from './chart';
-import data from '../../../data/tracks_analysis (1).json';
 import range from 'lodash/range';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,8 +28,21 @@ const AudioFeaturesDistribution = () => {
   const classes = useStyles();
   const [year, setYear] = useState(1921);
 
-  // todo: modify this to fetch data when year changes
-  const [inputData, setInputData] = useState(data['tracksDistForYear']);
+  const [inputData, setInputData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchData = async () => {
+    const response = await fetch(`http://localhost:8080/api/v1//tracks/${year}/distribution`);
+    if (response.ok) {
+      let data = await response.json();
+      setInputData(data['tracksDistForYear']);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [year]);
 
   return (
     <Container maxWidth={'lg'} className={classes.root}>
@@ -47,7 +56,8 @@ const AudioFeaturesDistribution = () => {
         renderInput={(params) => <TextField {...params} label={'Year'} />}
       />
 
-      <Chart year={year} data={inputData} />
+      {loading ? <CircularProgress color='inherit' size={100} /> : <Chart year={year} data={inputData} />}
+
       <Typography variant={'body1'} style={{ color: 'black' }}>
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

@@ -18,7 +18,6 @@ const Chart = ({ year, data }) => {
   useEffect(() => {
     const getDatasets = (data) =>
       Object.entries(data).map(([key, value]) => {
-        console.log(key);
         return {
           label: `${key} - Year ${year}`,
           fill: true,
