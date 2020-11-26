@@ -47,7 +47,7 @@ const ArtistVersatility = () => {
       let data = await artist_response.json();
       setInputData(data);
       console.log(data);
-      debugger;
+      // debugger;
     }
 
     if (response.ok) {

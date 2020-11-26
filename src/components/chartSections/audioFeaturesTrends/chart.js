@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import data from '../../../data/tracks_analysis (1).json';
 
 const colors = {
   acousticness: `rgba(34, 87, 122, 0.8)`,
@@ -13,7 +12,8 @@ const colors = {
 };
 
 const Chart = ({ startYear, endYear }) => {
-  const inputData = data['tracksStatsByYear'];
+  const [inputData, setInputData] = useState([]);
+  const [init, setInit] = useState(false);
 
   const [acousticness, setAcousticness] = useState([]);
   const [danceability, setDanceability] = useState([]);
@@ -42,40 +42,54 @@ const Chart = ({ startYear, endYear }) => {
     data: data,
   });
 
-  // todo: if inputData empty, fetch and do the following
+  const fetchData = async () => {
+    const response = await fetch(`http://localhost:8080/api/v1//tracks/stats`);
+    if (response.ok) {
+      let data = await response.json();
+      setInit(true);
+      setInputData(data['tracksStatsByYear']);
+    }
+  };
+
   useEffect(() => {
-    // todo: check if data present
-    let acousticnessTemp = [],
-      danceabilityTemp = [],
-      energyTemp = [],
-      instrumentalnessTemp = [],
-      livelinessTemp = [],
-      speechinessTemp = [],
-      valenceTemp = [],
-      labelsTemp = [];
+    fetchData();
+  }, []);
 
-    inputData.map((row) => {
-      if (row['year'] >= startYear && row['year'] <= endYear) {
-        acousticnessTemp.push(row['acousticnessAvg']);
-        danceabilityTemp.push(row['danceabilityAvg']);
-        energyTemp.push(row['energyAvg']);
-        instrumentalnessTemp.push(row['instrumentalnessAvg']);
-        livelinessTemp.push(row['livenessAvg']);
-        speechinessTemp.push(row['speechinessAvg']);
-        valenceTemp.push(row['valenceAvg']);
-        labelsTemp.push(row['year']);
+  useEffect(() => {
+    if (init) {
+      // if data not empty
+      let acousticnessTemp = [],
+        danceabilityTemp = [],
+        energyTemp = [],
+        instrumentalnessTemp = [],
+        livelinessTemp = [],
+        speechinessTemp = [],
+        valenceTemp = [],
+        labelsTemp = [];
+
+      inputData.map((row) => {
+        if (row['year'] >= startYear && row['year'] <= endYear) {
+          acousticnessTemp.push(row['acousticnessAvg']);
+          danceabilityTemp.push(row['danceabilityAvg']);
+          energyTemp.push(row['energyAvg']);
+          instrumentalnessTemp.push(row['instrumentalnessAvg']);
+          livelinessTemp.push(row['livenessAvg']);
+          speechinessTemp.push(row['speechinessAvg']);
+          valenceTemp.push(row['valenceAvg']);
+          labelsTemp.push(row['year']);
+        }
+      });
+
+      if (labelsTemp.length !== 0) {
+        setAcousticness(getDataset(acousticnessTemp, colors['acousticness'], 'Average Acousticness'));
+        setDanceability(getDataset(danceabilityTemp, colors['danceability'], 'Average Danceability'));
+        setEnergy(getDataset(energyTemp, colors['energy'], 'Average Energy'));
+        setInstrumentalness(getDataset(instrumentalnessTemp, colors['instrumentalness'], 'Average Instrumentalness'));
+        setLiveliness(getDataset(livelinessTemp, colors['liveliness'], 'Average Liveliness'));
+        setSpeechiness(getDataset(speechinessTemp, colors['speechiness'], 'Average Speechiness'));
+        setValence(getDataset(valenceTemp, colors['valence'], 'Average Valence'));
+        setLabels(labelsTemp);
       }
-    });
-
-    if (labelsTemp.length !== 0) {
-      setAcousticness(getDataset(acousticnessTemp, colors['acousticness'], 'Average Acousticness'));
-      setDanceability(getDataset(danceabilityTemp, colors['danceability'], 'Average Danceability'));
-      setEnergy(getDataset(energyTemp, colors['energy'], 'Average Energy'));
-      setInstrumentalness(getDataset(instrumentalnessTemp, colors['instrumentalness'], 'Average Instrumentalness'));
-      setLiveliness(getDataset(livelinessTemp, colors['liveliness'], 'Average Liveliness'));
-      setSpeechiness(getDataset(speechinessTemp, colors['speechiness'], 'Average Speechiness'));
-      setValence(getDataset(valenceTemp, colors['valence'], 'Average Valence'));
-      setLabels(labelsTemp);
     }
   }, [startYear, endYear, inputData]);
 
