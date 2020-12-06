@@ -72,6 +72,8 @@ const Display = () => {
     }
   };
 
+  const [type, setType] = useState('insert');
+
   useEffect(() => {
     // noinspection JSIgnoredPromiseFromCall
     init();
@@ -79,19 +81,47 @@ const Display = () => {
 
   const insert = () => {
     setData(emptyTrack);
+    setType('insert');
     setForm(true);
+  };
+
+  const postTrack = async (data) => {
+    if (type === 'insert') {
+      await fetch(`http://localhost:8080/api/v1/tracks/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      setTracks([data, ...tracks]);
+      setForm(false);
+    } else {
+      console.log(data);
+      await fetch(`http://localhost:8080/api/v1/tracks/${data.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const newTracks = [...tracks].filter((doc) => doc.id !== data.id);
+      setTracks([data, ...newTracks]);
+      setForm(false);
+    }
   };
 
   const edit = () => {
-    setData(tracks.find((value) => (value.id = selected[0])));
+    setData(tracks.find((track) => track.id === selected[0]));
+    setType('edit');
     setForm(true);
   };
 
-  const remove = () => {};
+  const remove = async () => {
+    for (let i = 0; i < selected.length; i++)
+      await fetch(`http://localhost:8080/api/v1/tracks/${selected[i]}`, { method: 'DELETE' });
+    setTracks([...tracks].filter((record) => !selected.includes(record.id)));
+  };
 
   return (
     <>
-      <Form open={form} data={data} handleClose={() => setForm(form)} />
+      {form ? <Form open={form} data={data} handleClose={() => setForm(false)} handleSubmit={postTrack} /> : <></>}
       <IconButton color={'primary'} onClick={insert}>
         <Add />
       </IconButton>

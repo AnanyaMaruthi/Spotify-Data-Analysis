@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Chip from '@material-ui/core/Chip';
+import { v4 as uuidv4 } from 'uuid';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Form = ({ data, open, handleClose }) => {
+const Form = ({ data, open, handleClose, handleSubmit }) => {
   const classes = useStyles();
 
   const [trackName, setTrackName] = useState(data.name);
@@ -46,6 +47,27 @@ const Form = ({ data, open, handleClose }) => {
   const [popularity, setPopularity] = useState(data.popularity);
   const [artists, setArtists] = useState(data.artists);
   const [inputArtist, setInputArtist] = useState('');
+
+  const onConfirm = () => {
+    handleSubmit({
+      acousticness,
+      artists,
+      danceability,
+      duration_ms: 24000,
+      energy,
+      id: data.id ? data.id : uuidv4(),
+      instrumentalness,
+      key: 10,
+      liveness,
+      loudness,
+      name: trackName,
+      popularity,
+      speechiness,
+      tempo,
+      valence,
+      year: Number(year),
+    });
+  };
 
   const handleArtistDelete = (artistToDelete) => () => {
     setArtists((artists) => artists.filter((artist) => artist !== artistToDelete));
@@ -286,7 +308,7 @@ const Form = ({ data, open, handleClose }) => {
         <Button onClick={handleClose} color='secondary'>
           Cancel
         </Button>
-        <Button onClick={handleClose} color='primary'>
+        <Button onClick={onConfirm} color='primary'>
           Confirm
         </Button>
       </DialogActions>

@@ -30,7 +30,7 @@ const ArtistVersatility = () => {
   const classes = useStyles();
 
   const [artists, setArtists] = useState([]);
-  const [artist, setArtist] = useState('2Pac');
+  const [artist, setArtist] = useState('10Years');
   const [inputData, setInputData] = useState({});
 
   const [init, setInit] = useState(true);
@@ -40,7 +40,7 @@ const ArtistVersatility = () => {
   const initialize = async () => {
     const [response, artist_response] = await Promise.all([
       fetch('http://localhost:8080/api/v1/artists/names'),
-      fetch('http://localhost:8080/api/v1/artists/2Pac'),
+      fetch('http://localhost:8080/api/v1/artists/10Years'),
     ]);
 
     if (artist_response.ok) {
@@ -51,14 +51,8 @@ const ArtistVersatility = () => {
     }
 
     if (response.ok) {
-      let data = await response.json();
-      const final = [];
-      data.forEach((lol) => {
-        if (!(['$', '\\', '(', '&', '-', '.', '*', '+', '0'].includes(lol[0]) || lol.length > 30) && isNaN(lol)) {
-          final.push(lol);
-        }
-      });
-      setArtists(final);
+      const data = await response.json();
+      setArtists(data);
       setLoading(false);
     }
   };
@@ -69,7 +63,7 @@ const ArtistVersatility = () => {
   }
 
   const selectArtist = async (value) => {
-    setArtist(value ? value : '2Pac');
+    setArtist(value ? value : '10Years');
     const response = await fetch('http://localhost:8080/api/v1/artists/' + artist);
     if (response.ok) {
       let data = await response.json();
