@@ -1,0 +1,905 @@
+[
+  {
+    "$match": {
+      "year": 1928
+    }
+  },
+  {
+    "$project": {
+      "_id": 0,
+      "acousticness": {
+        "$let": {
+          "vars": {
+            "acousticness": "$acousticness"
+          },
+          "in": {
+            "$switch": {
+              "branches": [
+                {
+                  "case": {
+                    "$lte": [
+                      "$$acousticness",
+                      0.1
+                    ]
+                  },
+                  "then": "0.0 - 0.1"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$acousticness",
+                      0.2
+                    ]
+                  },
+                  "then": "0.1 - 0.2"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$acousticness",
+                      0.30000000000000004
+                    ]
+                  },
+                  "then": "0.2 - 0.3"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$acousticness",
+                      0.4
+                    ]
+                  },
+                  "then": "0.3 - 0.4"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$acousticness",
+                      0.5
+                    ]
+                  },
+                  "then": "0.4 - 0.5"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$acousticness",
+                      0.6
+                    ]
+                  },
+                  "then": "0.5 - 0.6"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$acousticness",
+                      0.7
+                    ]
+                  },
+                  "then": "0.6 - 0.7"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$acousticness",
+                      0.7999999999999999
+                    ]
+                  },
+                  "then": "0.7 - 0.8"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$acousticness",
+                      0.9
+                    ]
+                  },
+                  "then": "0.8 - 0.9"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$acousticness",
+                      1
+                    ]
+                  },
+                  "then": "0.9 - 1.0"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "danceability": {
+        "$let": {
+          "vars": {
+            "danceability": "$danceability"
+          },
+          "in": {
+            "$switch": {
+              "branches": [
+                {
+                  "case": {
+                    "$lte": [
+                      "$$danceability",
+                      0.1
+                    ]
+                  },
+                  "then": "0.0 - 0.1"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$danceability",
+                      0.2
+                    ]
+                  },
+                  "then": "0.1 - 0.2"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$danceability",
+                      0.30000000000000004
+                    ]
+                  },
+                  "then": "0.2 - 0.3"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$danceability",
+                      0.4
+                    ]
+                  },
+                  "then": "0.3 - 0.4"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$danceability",
+                      0.5
+                    ]
+                  },
+                  "then": "0.4 - 0.5"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$danceability",
+                      0.6
+                    ]
+                  },
+                  "then": "0.5 - 0.6"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$danceability",
+                      0.7
+                    ]
+                  },
+                  "then": "0.6 - 0.7"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$danceability",
+                      0.7999999999999999
+                    ]
+                  },
+                  "then": "0.7 - 0.8"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$danceability",
+                      0.9
+                    ]
+                  },
+                  "then": "0.8 - 0.9"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$danceability",
+                      1
+                    ]
+                  },
+                  "then": "0.9 - 1.0"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "energy": {
+        "$let": {
+          "vars": {
+            "energy": "$energy"
+          },
+          "in": {
+            "$switch": {
+              "branches": [
+                {
+                  "case": {
+                    "$lte": [
+                      "$$energy",
+                      0.1
+                    ]
+                  },
+                  "then": "0.0 - 0.1"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$energy",
+                      0.2
+                    ]
+                  },
+                  "then": "0.1 - 0.2"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$energy",
+                      0.30000000000000004
+                    ]
+                  },
+                  "then": "0.2 - 0.3"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$energy",
+                      0.4
+                    ]
+                  },
+                  "then": "0.3 - 0.4"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$energy",
+                      0.5
+                    ]
+                  },
+                  "then": "0.4 - 0.5"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$energy",
+                      0.6
+                    ]
+                  },
+                  "then": "0.5 - 0.6"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$energy",
+                      0.7
+                    ]
+                  },
+                  "then": "0.6 - 0.7"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$energy",
+                      0.7999999999999999
+                    ]
+                  },
+                  "then": "0.7 - 0.8"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$energy",
+                      0.9
+                    ]
+                  },
+                  "then": "0.8 - 0.9"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$energy",
+                      1
+                    ]
+                  },
+                  "then": "0.9 - 1.0"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "instrumentalness": {
+        "$let": {
+          "vars": {
+            "instrumentalness": "$instrumentalness"
+          },
+          "in": {
+            "$switch": {
+              "branches": [
+                {
+                  "case": {
+                    "$lte": [
+                      "$$instrumentalness",
+                      0.1
+                    ]
+                  },
+                  "then": "0.0 - 0.1"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$instrumentalness",
+                      0.2
+                    ]
+                  },
+                  "then": "0.1 - 0.2"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$instrumentalness",
+                      0.30000000000000004
+                    ]
+                  },
+                  "then": "0.2 - 0.3"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$instrumentalness",
+                      0.4
+                    ]
+                  },
+                  "then": "0.3 - 0.4"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$instrumentalness",
+                      0.5
+                    ]
+                  },
+                  "then": "0.4 - 0.5"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$instrumentalness",
+                      0.6
+                    ]
+                  },
+                  "then": "0.5 - 0.6"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$instrumentalness",
+                      0.7
+                    ]
+                  },
+                  "then": "0.6 - 0.7"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$instrumentalness",
+                      0.7999999999999999
+                    ]
+                  },
+                  "then": "0.7 - 0.8"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$instrumentalness",
+                      0.9
+                    ]
+                  },
+                  "then": "0.8 - 0.9"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$instrumentalness",
+                      1
+                    ]
+                  },
+                  "then": "0.9 - 1.0"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "liveness": {
+        "$let": {
+          "vars": {
+            "liveness": "$liveness"
+          },
+          "in": {
+            "$switch": {
+              "branches": [
+                {
+                  "case": {
+                    "$lte": [
+                      "$$liveness",
+                      0.1
+                    ]
+                  },
+                  "then": "0.0 - 0.1"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$liveness",
+                      0.2
+                    ]
+                  },
+                  "then": "0.1 - 0.2"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$liveness",
+                      0.30000000000000004
+                    ]
+                  },
+                  "then": "0.2 - 0.3"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$liveness",
+                      0.4
+                    ]
+                  },
+                  "then": "0.3 - 0.4"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$liveness",
+                      0.5
+                    ]
+                  },
+                  "then": "0.4 - 0.5"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$liveness",
+                      0.6
+                    ]
+                  },
+                  "then": "0.5 - 0.6"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$liveness",
+                      0.7
+                    ]
+                  },
+                  "then": "0.6 - 0.7"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$liveness",
+                      0.7999999999999999
+                    ]
+                  },
+                  "then": "0.7 - 0.8"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$liveness",
+                      0.9
+                    ]
+                  },
+                  "then": "0.8 - 0.9"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$liveness",
+                      1
+                    ]
+                  },
+                  "then": "0.9 - 1.0"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "speechiness": {
+        "$let": {
+          "vars": {
+            "speechiness": "$speechiness"
+          },
+          "in": {
+            "$switch": {
+              "branches": [
+                {
+                  "case": {
+                    "$lte": [
+                      "$$speechiness",
+                      0.1
+                    ]
+                  },
+                  "then": "0.0 - 0.1"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$speechiness",
+                      0.2
+                    ]
+                  },
+                  "then": "0.1 - 0.2"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$speechiness",
+                      0.30000000000000004
+                    ]
+                  },
+                  "then": "0.2 - 0.3"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$speechiness",
+                      0.4
+                    ]
+                  },
+                  "then": "0.3 - 0.4"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$speechiness",
+                      0.5
+                    ]
+                  },
+                  "then": "0.4 - 0.5"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$speechiness",
+                      0.6
+                    ]
+                  },
+                  "then": "0.5 - 0.6"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$speechiness",
+                      0.7
+                    ]
+                  },
+                  "then": "0.6 - 0.7"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$speechiness",
+                      0.7999999999999999
+                    ]
+                  },
+                  "then": "0.7 - 0.8"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$speechiness",
+                      0.9
+                    ]
+                  },
+                  "then": "0.8 - 0.9"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$speechiness",
+                      1
+                    ]
+                  },
+                  "then": "0.9 - 1.0"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "valence": {
+        "$let": {
+          "vars": {
+            "valence": "$valence"
+          },
+          "in": {
+            "$switch": {
+              "branches": [
+                {
+                  "case": {
+                    "$lte": [
+                      "$$valence",
+                      0.1
+                    ]
+                  },
+                  "then": "0.0 - 0.1"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$valence",
+                      0.2
+                    ]
+                  },
+                  "then": "0.1 - 0.2"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$valence",
+                      0.30000000000000004
+                    ]
+                  },
+                  "then": "0.2 - 0.3"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$valence",
+                      0.4
+                    ]
+                  },
+                  "then": "0.3 - 0.4"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$valence",
+                      0.5
+                    ]
+                  },
+                  "then": "0.4 - 0.5"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$valence",
+                      0.6
+                    ]
+                  },
+                  "then": "0.5 - 0.6"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$valence",
+                      0.7
+                    ]
+                  },
+                  "then": "0.6 - 0.7"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$valence",
+                      0.7999999999999999
+                    ]
+                  },
+                  "then": "0.7 - 0.8"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$valence",
+                      0.9
+                    ]
+                  },
+                  "then": "0.8 - 0.9"
+                },
+                {
+                  "case": {
+                    "$lte": [
+                      "$$valence",
+                      1
+                    ]
+                  },
+                  "then": "0.9 - 1.0"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "$facet": {
+      "acousticness": [
+        {
+          "$group": {
+            "_id": {
+              "acousticness": "$acousticness"
+            },
+            "count": {
+              "$sum": 1
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "acousticness": "$_id.acousticness",
+            "count": 1
+          }
+        },
+        {
+          "$sort": {
+            "acousticness": 1
+          }
+        }
+      ],
+      "danceability": [
+        {
+          "$group": {
+            "_id": {
+              "danceability": "$danceability"
+            },
+            "count": {
+              "$sum": 1
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "danceability": "$_id.danceability",
+            "count": 1
+          }
+        },
+        {
+          "$sort": {
+            "danceability": 1
+          }
+        }
+      ],
+      "energy": [
+        {
+          "$group": {
+            "_id": {
+              "energy": "$energy"
+            },
+            "count": {
+              "$sum": 1
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "energy": "$_id.energy",
+            "count": 1
+          }
+        },
+        {
+          "$sort": {
+            "energy": 1
+          }
+        }
+      ],
+      "instrumentalness": [
+        {
+          "$group": {
+            "_id": {
+              "instrumentalness": "$instrumentalness"
+            },
+            "count": {
+              "$sum": 1
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "instrumentalness": "$_id.instrumentalness",
+            "count": 1
+          }
+        },
+        {
+          "$sort": {
+            "instrumentalness": 1
+          }
+        }
+      ],
+      "liveness": [
+        {
+          "$group": {
+            "_id": {
+              "liveness": "$liveness"
+            },
+            "count": {
+              "$sum": 1
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "liveness": "$_id.liveness",
+            "count": 1
+          }
+        },
+        {
+          "$sort": {
+            "liveness": 1
+          }
+        }
+      ],
+      "speechiness": [
+        {
+          "$group": {
+            "_id": {
+              "speechiness": "$speechiness"
+            },
+            "count": {
+              "$sum": 1
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "speechiness": "$_id.speechiness",
+            "count": 1
+          }
+        },
+        {
+          "$sort": {
+            "speechiness": 1
+          }
+        }
+      ],
+      "valence": [
+        {
+          "$group": {
+            "_id": {
+              "valence": "$valence"
+            },
+            "count": {
+              "$sum": 1
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "valence": "$_id.valence",
+            "count": 1
+          }
+        },
+        {
+          "$sort": {
+            "valence": 1
+          }
+        }
+      ]
+    }
+  }
+]

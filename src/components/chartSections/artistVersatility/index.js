@@ -30,7 +30,7 @@ const ArtistVersatility = () => {
   const classes = useStyles();
 
   const [artists, setArtists] = useState([]);
-  const [artist, setArtist] = useState('10Years');
+  const [artist, setArtist] = useState('Marshmello');
   const [inputData, setInputData] = useState({});
 
   const [init, setInit] = useState(true);
@@ -40,7 +40,7 @@ const ArtistVersatility = () => {
   const initialize = async () => {
     const [response, artist_response] = await Promise.all([
       fetch('http://localhost:8080/api/v1/artists/names'),
-      fetch('http://localhost:8080/api/v1/artists/10Years'),
+      fetch('http://localhost:8080/api/v1/artists/Marshmello'),
     ]);
 
     if (artist_response.ok) {
@@ -63,8 +63,8 @@ const ArtistVersatility = () => {
   }
 
   const selectArtist = async (value) => {
-    setArtist(value ? value : '10Years');
-    const response = await fetch('http://localhost:8080/api/v1/artists/' + artist);
+    setArtist(value ? value : 'Marshmello');
+    const response = await fetch('http://localhost:8080/api/v1/artists/' + value);
     if (response.ok) {
       let data = await response.json();
       setInputData(data);
